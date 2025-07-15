@@ -34,7 +34,7 @@ def genData() -> List[List[Any]]:
             bar()
     return chunk(data)
 
-def insertData(transaction, table, data):
+def insertData(transaction: str, table: str, data: str):
     transaction.insert(
             table,
             columns=["id", "first_name", "last_name", "email"],
@@ -42,7 +42,7 @@ def insertData(transaction, table, data):
         )
 
 
-def load_data(client, table, data):
+def load_data(client: str, table:str, data:str):
     with alive_bar(CUSTOMER_COUNT, title='Loading data   ') as bar:
         for chunk in data:
             client.run_in_transaction(lambda t: insertData(t, table, chunk))
