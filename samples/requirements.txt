@@ -1,3 +1,4 @@
 google-cloud-spanner
 Faker
 alive_progress
+numpy
