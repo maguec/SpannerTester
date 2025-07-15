@@ -28,6 +28,18 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+  /*
+    execute a SELECT 1 to warm up the connectiono
+  */
+
+  stmt := spanner.Statement{
+    SQL: "SELECT 1",
+  }
+
+  client.Single().Query(ctx, stmt)
+
+  
 	for i := 0; i < args.Count; i++ {
 		startTime := time.Now()
 		stmt := spanner.Statement{
@@ -44,7 +56,7 @@ func main() {
 		}
 		tach.AddTime(time.Since(startTime))
     bar.Add(1)
-		defer it.Stop()
+		it.Stop() // Kill the iterator or you run out of file descriptors
 	}
 	defer client.Close()
 	results := tach.Calc()
