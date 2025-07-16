@@ -15,3 +15,15 @@ export TF_VAR_gcp_region=<REGION>
 terraform init
 terraform apply
 ```
+
+### SSH into the instance
+
+The output will show a command similar to the following:
+
+```bash
+vm_ssh_command = "gcloud compute ssh --zone <REGION> vm-<HASH> --project <PROJECT>"
+```
+
+### Run a Sample benchmark
+
+[Benchmark](./samples/direct_access/README.md )
