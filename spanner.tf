@@ -12,8 +12,9 @@ resource "google_spanner_instance" "spanner" {
 }
 
 resource "google_spanner_database" "spanner" {
-  instance         = google_spanner_instance.spanner.name
-  name             = var.spanner_database_name
-  project          = var.gcp_project_id
-  database_dialect = "GOOGLE_STANDARD_SQL"
+  instance          = google_spanner_instance.spanner.name
+  deletion_protection = false
+  name              = var.spanner_database_name
+  project           = var.gcp_project_id
+  database_dialect  = "GOOGLE_STANDARD_SQL"
 }

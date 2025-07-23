@@ -1,9 +1,10 @@
 resource "google_compute_instance" "vm" {
-  project      = var.gcp_project_id
-  name         = "vm-${random_id.suffix.hex}"
-  machine_type = "n1-standard-8"
-  zone         = "${var.gcp_region}-a"
-  tags         = ["ssh-access-${random_id.suffix.hex}"]
+  project             = var.gcp_project_id
+  name                = "vm-${random_id.suffix.hex}"
+  machine_type        = "n1-standard-8"
+  zone                = "${var.gcp_region}-a"
+  tags                = ["ssh-access-${random_id.suffix.hex}"]
+  deletion_protection = false
 
   metadata_startup_script = templatefile(
     "startup_script.sh",
